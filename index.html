@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Astral</title>
+    <link rel="stylesheet" href="styles.css">
+        <style>
+            /* Estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f9;
+}
+
+/* Cabeçalho */
+header {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Conteúdo principal */
+main {
+    padding: 1rem;
+}
+
+section {
+    margin: 2rem 0;
+}
+
+.form-section h2,
+.about-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, button {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #2575fc;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #1d5bbf;
+}
+
+/* Seção Sobre */
+.about-section p {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #333;
+    color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    form {
+        width: 90%;
+    }
+}
+
+            </style>
+                <meta name="robots" content="noindex"></meta>
+                    <meta name="AdsBot-Google" content="noindex"></meta>
+                        <meta name="googlebot" content="noindex"></meta>
+                            <meta name="googlebot-news" content="noindex"></meta>
+</head>
+<body>
+    <header>
+        <h1>Mapa Astral</h1>
+        <p>Descubra o que os astros têm a dizer sobre você!</p>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <h2>Insira seus dados</h2>
+            <form>
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="date">Data de Nascimento:</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="time">Hora de Nascimento:</label>
+                <input type="time" id="time" name="time" required>
+                
+                <label for="place">Local de Nascimento:</label>
+                <input type="text" id="place" name="place" required>
+                
+                <button type="submit">Gerar Mapa Astral</button>
+            </form>
+        </section>
+        
+        <section class="about-section">
+            <h2>Sobre o Mapa Astral</h2>
+            <p>O mapa astral é uma ferramenta poderosa que analisa a posição dos astros no momento do seu nascimento. Ele revela tendências, desafios e oportunidades da sua personalidade e do seu destino.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mapa Astral. Todos os direitos reservados.</p>
+    </footer>
+        <script>
+            // Seleciona o formulário e os campos de entrada
+const form = document.querySelector('form');
+const nameInput = document.getElementById('name');
+const dateInput = document.getElementById('date');
+const timeInput = document.getElementById('time');
+const placeInput = document.getElementById('place');
+
+// Função para gerar uma mensagem simulada do mapa astral
+function generateAstrologicalMessage(name, date, time, place) {
+    const zodiacSigns = [
+        "Áries", "Touro", "Gêmeos", "Câncer", "Leão", "Virgem", 
+        "Libra", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"
+    ];
+    
+    // Apenas uma lógica simples para determinar o signo com base no mês
+    const birthMonth = new Date(date).getMonth();
+    const sign = zodiacSigns[birthMonth % 12];
+
+    return `
+        Olá, ${name}! 
+        Seu Mapa Astral foi gerado com base nos seguintes dados:
+        - Data de Nascimento: ${date}
+        - Hora de Nascimento: ${time}
+        - Local de Nascimento: ${place}
+        
+        Seu signo do zodíaco é ${sign}.
+        Este é apenas o início de sua jornada astral!
+    `;
+}
+
+// Adiciona um evento de envio ao formulário
+form.addEventListener('submit', (event) => {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    // Obtém os valores dos campos
+    const name = nameInput.value.trim();
+    const date = dateInput.value.trim();
+    const time = timeInput.value.trim();
+    const place = placeInput.value.trim();
+
+    // Valida os campos
+    if (!name || !date || !time || !place) {
+        alert('Por favor, preencha todos os campos corretamente.');
+        return;
+    }
+
+    // Gera a mensagem do Mapa Astral
+    const message = generateAstrologicalMessage(name, date, time, place);
+
+    // Exibe a mensagem em um modal ou alerta (pode ser adaptado para algo mais elegante)
+    alert(message);
+
+    // Opcional: Limpa o formulário após o envio
+    form.reset();
+});
+
+            </script>
+</body>
+</html>
+    
